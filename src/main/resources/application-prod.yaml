@@ -24,4 +24,4 @@ kqnbot:
     apikey: #你的账号apikey e.g. 454d5as789557d465as46
     daemonId: #你的daemonId e.g. k4789as7d89545hg6fas19
     instances:
-      GTNH: #你的instanceId e.g. fc86f0b172473c0d9e8c661fb9b16f4b
+      gtnh: #你的instanceId e.g. fc86f0b172473c0d9e8c661fb9b16f4b

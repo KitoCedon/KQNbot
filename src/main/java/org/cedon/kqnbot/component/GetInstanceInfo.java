@@ -10,20 +10,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+// import com.alibaba.fastjson2.JSONWriter;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
-// import com.alibaba.fastjson2.JSONWriter;
+import com.mikuac.shiro.annotation.AnyMessageHandler;
 import com.mikuac.shiro.annotation.MessageHandlerFilter;
-import com.mikuac.shiro.annotation.PrivateMessageHandler;
 import com.mikuac.shiro.annotation.common.Shiro;
 import com.mikuac.shiro.core.Bot;
-import com.mikuac.shiro.dto.event.message.PrivateMessageEvent;
+import com.mikuac.shiro.dto.event.message.AnyMessageEvent;
 
 import cn.hutool.http.HttpUtil;
-import cn.hutool.core.net.url.UrlBuilder;
-import cn.hutool.core.util.CharsetUtil;
+// import cn.hutool.core.net.url.UrlBuilder;
+// import cn.hutool.core.util.CharsetUtil;
 
 import org.cedon.kqnbot.properties.McsmProperties;
+import org.cedon.kqnbot.util.URLutil;;
 
 @Shiro
 @Component
@@ -33,24 +34,29 @@ public class GetInstanceInfo {
 
     private final McsmProperties mcsmProperties;
 
-    private String path = "/api/instance";
+    // private String path = "/api/instance";
 
     public GetInstanceInfo(McsmProperties mcsmProperties) {
         this.mcsmProperties = mcsmProperties;
     }
 
-    @PrivateMessageHandler
-    @MessageHandlerFilter(cmd = "^/info\s(.*)?")
-    public void handler(Bot bot, PrivateMessageEvent event, Matcher matcher) {
+    @AnyMessageHandler
+    @MessageHandlerFilter(cmd = "^\\$info(?:\s(.*))?$")
+    public void handler(Bot bot, AnyMessageEvent event, Matcher matcher) {
 
         String instanceName = matcher.group(1);
+        if (instanceName == null || instanceName.trim().isEmpty()) {
+            bot.sendMsg(event, "缺少参数, 请使用格式: $info <实例名>", false);
+            return;
+        }
+        instanceName = instanceName.toLowerCase();
         logger.info("获取到实例参数: {}", instanceName);
 
         Map<String, String> instances = mcsmProperties.getInstances();
         String uuid = instances.get(instanceName);
 
         if (uuid == null) {
-            bot.sendPrivateMsg(event.getUserId(), "未找到对应的实例配置: " + instanceName, false);
+            bot.sendMsg(event, "未找到对应的实例配置: " + instanceName, false);
             return;
         }
 
@@ -60,10 +66,10 @@ public class GetInstanceInfo {
                     mcsmProperties.getApikey(),
                     uuid,
                     mcsmProperties.getDaemonId());
-            bot.sendPrivateMsg(event.getUserId(), instanceInfo, false);
+            bot.sendMsg(event, instanceInfo, false);
         } catch (Exception e) {
             logger.error("获取实例信息失败: {}", e.getMessage(), e);
-            bot.sendPrivateMsg(event.getUserId(), "获取实例信息失败，请稍后再试。", false);
+            bot.sendMsg(event, "获取实例信息失败,可能是实例不存在,请稍后再试。", false);
         }
     }
 
@@ -87,22 +93,13 @@ public class GetInstanceInfo {
         /**
          * 构建URL并发送GET请求, 获取JSON格式res
          */
-        UrlBuilder buildUrl = UrlBuilder.ofHttp(url, CharsetUtil.CHARSET_UTF_8);
-        buildUrl.setScheme("https")
-                .addPath(path)
-                .addQuery("apikey", apikey)
-                .addQuery("uuid", uuid)
-                .addQuery("daemonId", daemonId)
-                .build();
-        logger.info("{}", buildUrl.toString());
+        String URLofInstance = URLutil.buildURLofInstance(url, apikey, uuid, daemonId);
+        logger.info("{}", URLofInstance);
 
         /**
          * Convert JSON to Java Object
          */
-        JSONObject res = JSON.parseObject(HttpUtil.get(buildUrl.toString()));
-        // String formattedJson = JSON.toJSONString(res,
-        // JSONWriter.Feature.PrettyFormat);
-        // logger.info("获取到的JSON文件为:\n{}", formattedJson);
+        JSONObject res = JSON.parseObject(HttpUtil.get(URLofInstance));
 
         String isOnline;
 

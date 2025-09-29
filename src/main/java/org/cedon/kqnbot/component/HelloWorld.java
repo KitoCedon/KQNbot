@@ -14,7 +14,7 @@ import java.util.regex.Matcher;
 @Component
 public class HelloWorld {
     @PrivateMessageHandler
-    @MessageHandlerFilter(cmd = "^/echo\s(.*)?")
+    @MessageHandlerFilter(cmd = "^\\$echo\s(.*)?")
     public void echo(Bot bot, PrivateMessageEvent event, Matcher matcher) {
         System.out.println(matcher);
         bot.sendPrivateMsg(event.getUserId(), matcher.group(1), false);
