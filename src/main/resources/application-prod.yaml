@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: kqnbot
+
+logging:
+  level:
+    root: info
+
+server:
+  port: 8144
+
+shiro:
+  ws:
+    timeout: 10
+    max-text-message-buffer-size: 512000
+    max-binary-message-buffer-size: 512000
+    server:
+      enable: true
+      url: /kqnbot
+
+kqnbot:
+  mcsm:
+    url: #你的管理面板地址 e.g. aaa.your.domain
+    apikey: #你的账号apikey e.g. 454d5as789557d465as46
+    daemonId: #你的daemonId e.g. k4789as7d89545hg6fas19
+    instances:
+      GTNH: #你的instanceId e.g. fc86f0b172473c0d9e8c661fb9b16f4b

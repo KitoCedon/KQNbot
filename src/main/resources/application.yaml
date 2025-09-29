@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: kqnbot
+  profiles:
+    active: dev # 默认激活开发环境
