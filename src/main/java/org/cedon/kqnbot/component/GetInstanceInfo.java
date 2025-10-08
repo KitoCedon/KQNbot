@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-// import com.alibaba.fastjson2.JSONWriter;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.mikuac.shiro.annotation.AnyMessageHandler;
@@ -20,8 +19,6 @@ import com.mikuac.shiro.core.Bot;
 import com.mikuac.shiro.dto.event.message.AnyMessageEvent;
 
 import cn.hutool.http.HttpUtil;
-// import cn.hutool.core.net.url.UrlBuilder;
-// import cn.hutool.core.util.CharsetUtil;
 
 import org.cedon.kqnbot.properties.McsmProperties;
 import org.cedon.kqnbot.util.URLutil;;
@@ -34,8 +31,6 @@ public class GetInstanceInfo {
 
     private final McsmProperties mcsmProperties;
 
-    // private String path = "/api/instance";
-
     public GetInstanceInfo(McsmProperties mcsmProperties) {
         this.mcsmProperties = mcsmProperties;
     }
@@ -43,16 +38,17 @@ public class GetInstanceInfo {
     @AnyMessageHandler
     @MessageHandlerFilter(cmd = "^\\$info(?:\s(.*))?$")
     public void handler(Bot bot, AnyMessageEvent event, Matcher matcher) {
+        Map<String, String> instances = mcsmProperties.getInstances();
 
         String instanceName = matcher.group(1);
         if (instanceName == null || instanceName.trim().isEmpty()) {
             bot.sendMsg(event, "缺少参数, 请使用格式: $info <实例名>", false);
             return;
         }
+
         instanceName = instanceName.toLowerCase();
         logger.info("获取到实例参数: {}", instanceName);
 
-        Map<String, String> instances = mcsmProperties.getInstances();
         String uuid = instances.get(instanceName);
 
         if (uuid == null) {
