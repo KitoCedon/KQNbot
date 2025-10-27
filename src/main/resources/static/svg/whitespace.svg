@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="uuid-ea9aac17-2984-485a-9f34-dbb699eb7f2b" data-name="图层 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="uuid-20a5251e-4f2a-4e6d-88c5-5e89f0520d2c" data-name="未命名的渐变 205" x1="1990.69" y1="816.17" x2="-70.69" y2="263.83" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#aaf9ff"/>
+      <stop offset=".13" stop-color="#a0f2fc"/>
+      <stop offset=".35" stop-color="#87e1f5"/>
+      <stop offset=".64" stop-color="#5dc6e9"/>
+      <stop offset=".96" stop-color="#24a0d8"/>
+      <stop offset="1" stop-color="#1e9cd7"/>
+    </linearGradient>
+  </defs>
+  <g id="uuid-71e2d9f8-83a1-4bc3-a20d-26dca463cd2c" data-name="图层 1">
+    <rect width="1920" height="1080" style="fill: url(#uuid-20a5251e-4f2a-4e6d-88c5-5e89f0520d2c);"/>
+  </g>
+</svg>

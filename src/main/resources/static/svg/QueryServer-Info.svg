@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name="图层 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        filter: url(#drop-shadow-1);
+      }
+
+      .cls-1, .cls-2 {
+        opacity: .3;
+      }
+
+      .cls-3 {
+        letter-spacing: 0em;
+      }
+
+      .cls-4 {
+        letter-spacing: -.05em;
+      }
+
+      .cls-5 {
+        letter-spacing: 0em;
+      }
+
+      .cls-6 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-7 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-8 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-9 {
+        letter-spacing: 0em;
+      }
+
+      .cls-10, .cls-11 {
+        font-family: Torus-Regular, Torus;
+      }
+
+      .cls-10, .cls-11, .cls-12 {
+        fill: #fff;
+      }
+
+      .cls-10, .cls-12 {
+        font-size: 42px;
+      }
+
+      .cls-11 {
+        font-size: 64px;
+      }
+
+      .cls-13 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-12 {
+        font-family: Torus-SemiBold, Torus;
+        font-weight: 600;
+      }
+    </style>
+    <filter id="drop-shadow-1" x="112" y="167" width="1267" height="143" filterUnits="userSpaceOnUse">
+      <feOffset dx="12" dy="10"/>
+      <feGaussianBlur result="blur" stdDeviation="5"/>
+      <feFlood flood-color="#000" flood-opacity=".75"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <!-- <image width="8000" height="4500" transform="scale(.24)" xlink:href="QuerySever-Info-1.png"/> -->
+   <image width="1920" height="1080" xlink:href="whitespace.svg"/>
+  <g id="frame">
+    <rect class="cls-2" x="54" y="54" width="1812" height="972" rx="20" ry="20"/>
+  </g>
+  <g id="info">
+    <text id="queryTime" class="cls-12" transform="translate(1389.73 1004.01)"><tspan class="cls-9" x="0" y="0">0000/00/00 00:00:00</tspan></text>
+    <text class="cls-12" transform="translate(1141.23 1004.01)"><tspan x="0" y="0">Query Time:</tspan></text>
+    <rect class="cls-2" x="153" y="684" width="870" height="79" rx="20" ry="20"/>
+    <text id="version" class="cls-10" transform="translate(757.5 736.75)" text-anchor="middle"><tspan x="0" y="0">0.00.0</tspan></text>
+    <rect class="cls-2" x="154" y="684" width="338" height="79" rx="20" ry="20"/>
+    <text class="cls-10" transform="translate(250.74 736.75)"><tspan x="0" y="0">Version</tspan></text>
+    <rect class="cls-2" x="153" y="538" width="870" height="79" rx="20" ry="20"/>
+    <text id="playerNumber" class="cls-10" transform="translate(757.5 590.75)" text-anchor="middle"><tspan x="0" y="0">0/0</tspan></text>
+    <rect class="cls-2" x="154" y="538" width="338" height="79" rx="20" ry="20"/>
+    <text class="cls-10" transform="translate(180.89 590.75)"><tspan x="0" y="0">Player number</tspan></text>
+    <rect class="cls-2" x="153" y="392" width="870" height="79" rx="20" ry="20"/>
+    <text id="status" class="cls-10" transform="translate(757.5 444.75)" text-anchor="middle"><tspan x="0" y="0">Offline</tspan></text>
+    <rect class="cls-2" x="154" y="392" width="338" height="79" rx="20" ry="20"/>
+    <text class="cls-10" transform="translate(259.83 444.75)"><tspan class="cls-13" x="0" y="0">Status</tspan></text>
+    <rect class="cls-1" x="115" y="172.67" width="1237" height="112.33" rx="20" ry="20"/>
+    <text id="serverName" class="cls-11" transform="translate(166.48 249.69)"><tspan x="0" y="0">XXXXXXXX</tspan></text>
+    <path class="cls-2" d="M1003,684h-114.95l-21.17,79h136.12c11.05,0,20-8.95,20-20v-39c0-11.05-8.95-20-20-20Z"/>
+    <g class="cls-2">
+      <path d="M1332,172.67h-75.77l-30.1,112.33h105.87c11.05,0,20-8.95,20-20v-72.33c0-11.05-8.95-20-20-20Z"/>
+    </g>
+    <path class="cls-2" d="M1002,538h-74.83l-21.17,79h96c11.05,0,20-8.95,20-20v-39c0-11.05-8.95-20-20-20Z"/>
+    <path class="cls-2" d="M1002,392h-35.71l-21.17,79h56.88c11.05,0,20-8.95,20-20v-39c0-11.05-8.95-20-20-20Z"/>
+  </g>
+</svg>
