@@ -1,7 +1,9 @@
-package org.cedon.kqnbot.component;
+package org.cedon.kqnbot.command;
 
 import java.util.regex.Matcher;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.mikuac.shiro.annotation.AnyMessageHandler;
@@ -13,10 +15,12 @@ import com.mikuac.shiro.dto.event.message.AnyMessageEvent;
 @Shiro
 @Component
 public class Ping {
+
+    private static final Logger logger = LoggerFactory.getLogger(Ping.class);
+
     @AnyMessageHandler
     @MessageHandlerFilter(cmd = "^\\$ping$")
     public void Handler(Bot bot, AnyMessageEvent event, Matcher matcher) {
-
         bot.sendMsg(event, "还活着喵~", false);
     }
 }

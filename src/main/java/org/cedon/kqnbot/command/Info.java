@@ -1,5 +1,7 @@
-package org.cedon.kqnbot.component;
+package org.cedon.kqnbot.command;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Map;
@@ -9,6 +11,7 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.boot.system.ApplicationHome;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
@@ -20,24 +23,28 @@ import com.mikuac.shiro.dto.event.message.AnyMessageEvent;
 
 import cn.hutool.http.HttpUtil;
 
+import org.apache.batik.util.XMLResourceDescriptor;
+import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
+import org.w3c.dom.Document;
 import org.cedon.kqnbot.properties.McsmProperties;
-import org.cedon.kqnbot.util.URLutil;;
+import org.cedon.kqnbot.util.URLUtils;;
 
 @Shiro
 @Component
-public class GetInstanceInfo {
+public class Info {
 
-    private static final Logger logger = LoggerFactory.getLogger(GetInstanceInfo.class);
+    private static final Logger logger = LoggerFactory.getLogger(Info.class);
 
     private final McsmProperties mcsmProperties;
 
-    public GetInstanceInfo(McsmProperties mcsmProperties) {
+    public Info(McsmProperties mcsmProperties) {
         this.mcsmProperties = mcsmProperties;
     }
 
     @AnyMessageHandler
     @MessageHandlerFilter(cmd = "^\\$info(?:\s(.*))?$")
     public void handler(Bot bot, AnyMessageEvent event, Matcher matcher) {
+
         Map<String, String> instances = mcsmProperties.getInstances();
 
         String instanceName = matcher.group(1);
@@ -78,7 +85,7 @@ public class GetInstanceInfo {
      * @param daemonId 守护进程ID
      * @return 服务器当前基本信息
      */
-    public String getInstanceInfo(String url, String apikey, String uuid, String daemonId) {
+    private String getInstanceInfo(String url, String apikey, String uuid, String daemonId) {
 
         String instanceInfoPattern = """
                 服务器名称:{0}
@@ -89,7 +96,7 @@ public class GetInstanceInfo {
         /**
          * 构建URL并发送GET请求, 获取JSON格式res
          */
-        String URLofInstance = URLutil.buildURLofInstance(url, apikey, uuid, daemonId);
+        String URLofInstance = URLUtils.buildURLofInstance(url, apikey, uuid, daemonId);
         logger.info("{}", URLofInstance);
 
         /**
@@ -123,5 +130,12 @@ public class GetInstanceInfo {
                 version,
                 time);
         return instanceInfo;
+    }
+
+    private void renderImg() {
+        File path = new File(this.getClass().getResource("/").getPath());
+        String parser = XMLResourceDescriptor.getXMLParserClassName();
+        SAXSVGDocumentFactory f = new SAXSVGDocumentFactory(parser);
+        // String url = "g"
     }
 }

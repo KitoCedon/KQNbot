@@ -1,4 +1,4 @@
-package org.cedon.kqnbot.component;
+package org.cedon.kqnbot.command;
 
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
 
 @Shiro
 @Component
-public class HelloWorld {
+public class Echo {
     @AnyMessageHandler
     @MessageHandlerFilter(cmd = "^\\$echo(?:\s(.*))?$")
     public void echo(Bot bot, AnyMessageEvent event, Matcher matcher) {

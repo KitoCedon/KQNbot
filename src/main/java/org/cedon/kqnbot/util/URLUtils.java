@@ -3,7 +3,7 @@ package org.cedon.kqnbot.util;
 import cn.hutool.core.net.url.UrlBuilder;
 import cn.hutool.core.util.CharsetUtil;
 
-public class URLutil {
+public class URLUtils {
     // TODO: 从全局变量读取 url, apikey
     private static String pathOfInstance = "/api/instance";
 
